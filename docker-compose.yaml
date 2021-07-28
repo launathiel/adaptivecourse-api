@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  api:
+    restart: always
+    build:
+      context: .
+    container_name: api
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
+    networks:
+      - lib_api
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - lib_api
+
+networks:
+  lib_api:
+
+volumes:
+  mongodb-data:
