@@ -12,25 +12,23 @@ services:
       - mongodb
     environment:
       NODE_ENV: ${NODE_ENV}
-      MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
     networks:
-      - lib_api
+      - api-network
 
   mongodb:
     image: mongo:latest
     restart: always
     ports:
       - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    env_file: 
+      - .env.credential
     volumes:
       - mongodb-data:/data/db
     networks:
-      - lib_api
+      - api-network
 
 networks:
-  lib_api:
+  api-network:
 
 volumes:
   mongodb-data:

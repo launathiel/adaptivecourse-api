@@ -17,6 +17,8 @@ const contactSchema = new Schema(
         create_date: {
             type: Date,
             default: Date.now
+            // var d = new Date(Date.now); /* midnight in China on April 13th */
+            // Date.now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
         }
     }, 
     {
