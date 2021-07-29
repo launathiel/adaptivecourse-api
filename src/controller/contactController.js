@@ -1,4 +1,4 @@
-Contact = require('./contactModel');
+Contact = require('../models/contactModel');
 
 exports.index = function (req, res) {
     Contact.get(function(err, contacts){
@@ -22,7 +22,7 @@ exports.new = function (req, res) {
     contact.gender = req.body.gender;
     contact.email = req.body.email;
     contact.phone = req.body.phone;
-// save the contact and check for errors
+
     contact.save(function (err) {
         if (err)
             res.json(err);

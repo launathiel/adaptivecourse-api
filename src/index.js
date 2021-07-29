@@ -4,8 +4,6 @@ dotenv.config({
     node_env: process.env.NODE_ENV || 'development'
 });
 
-const apiRoutes = require("./api-routes");
-
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,15 +26,9 @@ mongoose
     .then(() => console.log("database connected"))
     .catch((err) => console.log(err));
 
+const apiRoutes = require("./api-routes");
 app.use('/api', apiRoutes);
 
 app.listen(port, () => {
     console.log(`this server running on port ${port}`);
 });
-
-
-console.log('database user:', process.env.MONGO_ROOT_USERNAME);
-console.log('database passwd:', process.env.MONGO_ROOT_PASSWORD);
-console.log('database name:', process.env.DB_NAME);
-console.log('database host:', process.env.DB_HOST);
-console.log('default port:', process.env.PORT);
