@@ -28,6 +28,11 @@ const courseSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    isDiskon: {
+      type: Boolean,
+      required: true,
+    },
+    hargaDiskon: String,
   },
   {
     collection: 'course',

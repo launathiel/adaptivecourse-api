@@ -29,6 +29,8 @@ exports.createNewCourse = async (req, res) => {
     imageMateri: req.body.imageMateri,
     imageNetwork: req.body.imageNetwork,
     harga: req.body.harga,
+    isDiskon: req.body.isDiskon,
+    hargaDiskon: req.body.hargaDiskon,
   });
 
   try {
@@ -98,6 +100,14 @@ exports.UpdateById = async (req, res) => {
 
     if (req.body.harga) {
       course.harga = req.body.harga;
+    }
+
+    if (req.body.isDiskon) {
+      course.isDiskon = req.body.isDiskon;
+    }
+
+    if (req.body.hargaDiskon) {
+      course.hargaDiskon = req.body.hargaDiskon;
     }
 
     await course.save();
