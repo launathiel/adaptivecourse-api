@@ -21,10 +21,13 @@ router.route('/contacts/:contact_id')
     .patch(contactController.update)
     .put(contactController.update)
     .delete(contactController.delete);
+    
 // Course API
 router.route('/course')
-    .get(courseController.get)
-    .post(courseController.new);
-//
+    .get(courseController.getAllCourse)
+    .post(courseController.createNewCourse);
+router.route('/course/:post_id')
+    .get(courseController.viewById)
+    .delete(courseController.deleteById);
 // Export API routes
 module.exports = router;

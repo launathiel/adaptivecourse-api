@@ -17,10 +17,8 @@ const courseSchema = new Schema(
         },
         bintang: String,
         jumlahPenilai: String,
-        imageMateri: {
-            type: String,
-            required: true
-        },
+        imageMateri: String,
+        imageNetwork: String,
         harga: {
             type: String,
             required: true
