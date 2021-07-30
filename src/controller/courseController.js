@@ -4,12 +4,14 @@ Course = require('../models/courseModel');
 exports.getAllCourse = async (req, res) => {
   try {
     const courses = await Course.find();
+    res.status(200);
     res.json({
       status: 'sucess',
       message: 'Course retrieved successfully',
       data: courses,
     });
   } catch (err) {
+    res.status(404);
     res.json({
       status: 'error',
       message: err,
@@ -31,11 +33,13 @@ exports.createNewCourse = async (req, res) => {
 
   try {
     const saveCourse = await course.save();
+    res.status(200);
     res.json({
       message: 'new course created!',
       data: saveCourse,
     });
   } catch (err) {
+    res.status(404);
     res.json({
       status: 'error',
       message: err,
@@ -46,27 +50,13 @@ exports.createNewCourse = async (req, res) => {
 exports.viewById = async (req, res) => {
   try {
     const course = await Course.findById(req.params.course_id);
+    res.status(200);
     res.json({
       message: 'course details loading..',
       data: course,
     });
   } catch (err) {
-    res.json({
-      status: 'error',
-      message: err,
-    });
-  }
-};
-
-exports.deleteById = async (req, res) => {
-  try {
-    const removedPost = await Course.deleteOne({ _id: req.params.course_id });
-    res.json({
-      status: 'sucess',
-      message: `Course with id = ${req.params.course_id} has been deleted`,
-      data: removedPost,
-    });
-  } catch (err) {
+    res.status(404);
     res.json({
       status: 'error',
       message: err,
@@ -111,9 +101,34 @@ exports.UpdateById = async (req, res) => {
     }
 
     await course.save();
-    res.send(course);
+    res.status(200);
+    res.json({
+      status: 'success',
+      message: 'successfully update course!',
+      data: course,
+    });
   } catch (err) {
     res.status(404);
-    res.send({ error: "Post doesn't exist!" });
+    res.json({
+      status: 'error',
+      message: err,
+    });
+  }
+};
+
+exports.deleteById = async (req, res) => {
+  try {
+    await Course.deleteOne({ _id: req.params.course_id });
+    res.status(200);
+    res.json({
+      status: 'sucess',
+      message: `Course with id = ${req.params.course_id} has been deleted`,
+    });
+  } catch (err) {
+    res.status(404);
+    res.json({
+      status: 'error',
+      message: err,
+    });
   }
 };
