@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     message: 'congratulations you have get the response from the api!',
   });
 });
+// User Register and Login API
 // Import contact controller
 const courseController = require('./controller/courseController');
 // Course API

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const dotenv = require('dotenv-flow');
+const cors = require('cors');
 
 dotenv.config({
   node_env: process.env.NODE_ENV || 'development',
@@ -14,20 +15,24 @@ app.use(express.urlencoded({
   extended: true,
 }));
 app.use(express.json());
+app.use(cors());
 
 // mongoose
-const connectionString = `mongodb://${process.env.MONGO_ROOT_USERNAME}:${process.env.MONGO_ROOT_PASSWORD}@${process.env.DB_HOST}`;
+const connectDB = require('../config/db');
 
-const mongoose = require('mongoose');
+connectDB();
+// const connectionString = `mongodb://${process.env.MONGO_ROOT_USERNAME}:${process.env.MONGO_ROOT_PASSWORD}@${process.env.DB_HOST}`;
 
-mongoose
-  .connect(connectionString, {
-    dbName: process.env.DB_NAME,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('database connected'))
-  .catch((err) => console.log(err));
+// const mongoose = require('mongoose');
+
+// mongoose
+//   .connect(connectionString, {
+//     dbName: process.env.DB_NAME,
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log('database connected'))
+//   .catch((err) => console.log(err));
 
 const apiRoutes = require('./api-routes');
 
