@@ -21,18 +21,6 @@ app.use(cors());
 const connectDB = require('../config/db');
 
 connectDB();
-// const connectionString = `mongodb://${process.env.MONGO_ROOT_USERNAME}:${process.env.MONGO_ROOT_PASSWORD}@${process.env.DB_HOST}`;
-
-// const mongoose = require('mongoose');
-
-// mongoose
-//   .connect(connectionString, {
-//     dbName: process.env.DB_NAME,
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log('database connected'))
-//   .catch((err) => console.log(err));
 
 const apiRoutes = require('./api-routes');
 

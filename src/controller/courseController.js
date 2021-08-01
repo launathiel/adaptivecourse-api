@@ -14,7 +14,7 @@ exports.getAllCourse = async (req, res) => {
     res.status(404);
     res.json({
       status: 'error',
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -44,7 +44,7 @@ exports.createNewCourse = async (req, res) => {
     res.status(404);
     res.json({
       status: 'error',
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -61,7 +61,7 @@ exports.viewById = async (req, res) => {
     res.status(404);
     res.json({
       status: 'error',
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -121,7 +121,7 @@ exports.UpdateById = async (req, res) => {
     res.status(404);
     res.json({
       status: 'error',
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -138,7 +138,7 @@ exports.deleteById = async (req, res) => {
     res.status(404);
     res.json({
       status: 'error',
-      message: err,
+      message: err.message,
     });
   }
 };

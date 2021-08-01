@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
   });
 });
 // User Register and Login API
+const userController = require('./controller/userController');
+
+router.route('/auth/register')
+  .post(userController.postUserRegister);
+router.route('/auth/register/:user_id')
+  .delete(userController.deleteUserById);
 // Import contact controller
 const courseController = require('./controller/courseController');
 // Course API
