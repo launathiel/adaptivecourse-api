@@ -10,6 +10,7 @@ const connectDB = async () => {
       dbName: process.env.DB_NAME,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
     console.log(`MongoDB Connected: ${conct.connection.host}`);
   } catch (err) {

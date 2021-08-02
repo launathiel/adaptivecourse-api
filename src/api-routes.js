@@ -14,6 +14,8 @@ router.route('/auth/register')
   .post(userController.postUserRegister);
 router.route('/auth/register/:user_id')
   .delete(userController.deleteUserById);
+router.route('/auth/login')
+  .post(userController.postUserLogin);
 // Import contact controller
 const courseController = require('./controller/courseController');
 // Course API

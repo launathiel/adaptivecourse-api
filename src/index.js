@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const dotenv = require('dotenv-flow');
 const cors = require('cors');
+const dotenv = require('dotenv-flow');
 
 dotenv.config({
   node_env: process.env.NODE_ENV || 'development',
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 // mongoose
-const connectDB = require('../config/db');
+const connectDB = require('./config/db');
 
 connectDB();
 
@@ -27,5 +27,5 @@ const apiRoutes = require('./api-routes');
 app.use('/api', apiRoutes);
 
 app.listen(port, () => {
-  console.log(`this server running on port ${port}`);
+  console.log(`This server is running on port ${port}`);
 });
