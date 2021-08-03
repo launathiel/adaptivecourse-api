@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verify = require('./validator/verifyToken');
 // Set default API response
 router.get('/', (req, res) => {
   res.json({
@@ -10,6 +11,8 @@ router.get('/', (req, res) => {
 // User Register and Login API
 const userController = require('./controller/userController');
 
+router.route('/testing')
+  .get(verify, userController.testGetPost);
 router.route('/auth/register')
   .post(userController.postUserRegister);
 router.route('/auth/register/:user_id')
